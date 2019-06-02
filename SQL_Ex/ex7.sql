@@ -11,7 +11,7 @@ drop table Pays;
 /*Partie 1*/
 /*01*/
 create table Pays (
-  Numero number(4)constraint numero_pk primary key,
+  Numero number(4) primary key,
   Nom varchar2(30) not null
 );
 
