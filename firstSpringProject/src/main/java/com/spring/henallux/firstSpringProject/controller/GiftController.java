@@ -2,7 +2,7 @@ package com.spring.henallux.firstSpringProject.controller;
 
 import com.spring.henallux.firstSpringProject.model.User;
 import com.spring.henallux.firstSpringProject.service.GiftService;
-import com.spring.henallux.firstSpringProject.util.Constants;
+import com.spring.henallux.firstSpringProject.dataAccess.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
