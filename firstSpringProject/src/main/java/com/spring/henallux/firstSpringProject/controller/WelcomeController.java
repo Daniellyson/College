@@ -41,16 +41,14 @@ public class WelcomeController {
         String message = messageSource.getMessage("key", null, locale);
 
         ArrayList<MagicKeyForm> keysDB = magicKeyDataAccess.getMagicKey();
-
-        //TODO
+        
         int countKey = 0;
         while(countKey < keysDB.size() &&
-                keysDB.get(countKey).getMagicKey() != null &&
                 !keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
             countKey++;
         }
 
-        if (keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
+        if (countKey < keysDB.size() && keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
             return "redirect:/userInscription";
         }
         else {
