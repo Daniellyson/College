@@ -1,5 +1,7 @@
 package com.spring.henallux.firstSpringProject.controller;
 
+import com.spring.henallux.firstSpringProject.dataAccess.MagicKeyDataAccess;
+import com.spring.henallux.firstSpringProject.dataAccess.dao.MagicKeyDAO;
 import com.spring.henallux.firstSpringProject.model.MagicKeyForm;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class WelcomeController {
 
     @Autowired
     private MessageSource messageSource;
+    @Autowired
+    private MagicKeyDataAccess magicKeyDataAccess;
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, Locale locale) {
@@ -34,7 +38,9 @@ public class WelcomeController {
 
         String message = messageSource.getMessage("key", null, locale);
 
-        if(magicKeyForm.getMagicKey().equals("Daniellyson")) {
+        Boolean keyExist = magicKeyDataAccess.getMagicKey().contains(magicKeyForm.getMagicKey());
+
+        if (keyExist) {
             return "redirect:/userInscription";
         }
         else {
