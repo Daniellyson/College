@@ -17,6 +17,6 @@ import javax.persistence.Table;
 public class MagicKeyEntity {
 
     @Id
-    @Column
+    @Column(name = "magic_value")
     private String magicValue;
 }

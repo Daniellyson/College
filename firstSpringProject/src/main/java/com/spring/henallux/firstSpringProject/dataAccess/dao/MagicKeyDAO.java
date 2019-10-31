@@ -26,12 +26,15 @@ public class MagicKeyDAO implements MagicKeyDataAccess {
 
     @Override
     @Transactional
-    public ArrayList<String> getMagicKey() {
+    public ArrayList<MagicKeyForm> getMagicKey() {
 
         List<MagicKeyEntity> magicKeyEntities = magicKeyRepository.findAll();
-        ArrayList<String> keys = new ArrayList<>();
+
+        ArrayList<MagicKeyForm> keys = new ArrayList<>();
+
         for (MagicKeyEntity keyEntity : magicKeyEntities) {
-            keys.add(magicKeyConverter.magicKeyEntityToMagicKeyModel(keyEntity).toString());
+            MagicKeyForm magicKeyForm = magicKeyConverter.magicKeyEntityToMagicKeyModel(keyEntity);
+            keys.add(magicKeyForm);
         }
         return keys;
     }

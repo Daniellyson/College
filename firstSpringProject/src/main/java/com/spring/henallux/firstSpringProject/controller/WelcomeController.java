@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -38,9 +40,17 @@ public class WelcomeController {
 
         String message = messageSource.getMessage("key", null, locale);
 
-        Boolean keyExist = magicKeyDataAccess.getMagicKey().contains(magicKeyForm.getMagicKey());
+        ArrayList<MagicKeyForm> keysDB = magicKeyDataAccess.getMagicKey();
 
-        if (keyExist) {
+        //TODO
+        int countKey = 0;
+        while(countKey < keysDB.size() &&
+                keysDB.get(countKey).getMagicKey() != null &&
+                !keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
+            countKey++;
+        }
+
+        if (keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
             return "redirect:/userInscription";
         }
         else {
