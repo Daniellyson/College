@@ -38,10 +38,10 @@ public class WelcomeController {
     @RequestMapping(value="/sent", method = RequestMethod.POST)
     public String getFormData(@ModelAttribute(value = "formMagicKey") MagicKeyForm magicKeyForm, Locale locale) {
 
-        String message = messageSource.getMessage("key", null, locale);
+        String message = messageSource.getMessage("badKey", null, locale);
 
         ArrayList<MagicKeyForm> keysDB = magicKeyDataAccess.getMagicKey();
-        
+
         int countKey = 0;
         while(countKey < keysDB.size() &&
                 !keysDB.get(countKey).getMagicKey().equals(magicKeyForm.getMagicKey())) {
@@ -52,6 +52,7 @@ public class WelcomeController {
             return "redirect:/userInscription";
         }
         else {
+
             return "integrated:keyError";
         }
     }

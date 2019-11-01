@@ -47,10 +47,22 @@ public class InscriptionController {
     public String getFormData(Model model,
                               @Valid @ModelAttribute(value = Constants.CURRENT_USER) User user,
                               final BindingResult errors) {
-        String welcomeMessage;
-        Boolean error;
 
-        if(!errors.hasErrors()) {
+
+        if(errors.hasErrors()) {
+            model.addAttribute("hobbies", hobbiesService.getHobbies());
+            model.addAttribute("currentUser", new User());
+
+            return "redirect:/userInscription";
+        }
+
+        return "redirect:/gift";
+    }
+}
+/*
+String welcomeMessage;
+        Boolean error;
+if(!errors.hasErrors()) {
             welcomeMessage = "Welcome, " + user.getName();
             error = false;
         } else {
@@ -62,7 +74,4 @@ public class InscriptionController {
         }
         model.addAttribute("error", error);
         model.addAttribute("message", welcomeMessage);
-
-        return "redirect:/gift";
-    }
-}
+        */
