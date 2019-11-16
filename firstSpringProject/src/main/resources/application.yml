@@ -1,8 +1,3 @@
 server:
-  port: 8084
-  servlet:
-    contextPath: /firstSpring
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/firstspring?user=root&serverTimezone=UTC
-    password: Password
+  port: 8082
+  contextPath: /firstSpring
